@@ -46,7 +46,7 @@ public class Address {
     			countComma++;
     		}
     	}
-        return countComma == 3;
+    	return countComma == 3;
     }
 
     @Override
