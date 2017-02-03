@@ -94,9 +94,9 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
-    	File file = path.toFile();
+        File file = path.toFile();
         if (!file.exists()) {
-        	showWarningMessage("Address book is not found. Creating a new address book and transferring previously stored data...");
+            showWarningMessage("Address book is not found. Creating a new address book and transferring previously stored data...");
         }
         
         /* Note: Note the 'try with resource' statement below.
@@ -165,7 +165,7 @@ public class StorageFile {
      * @param message to be shown to user
      */
     private void showWarningMessage(String message) {
-		TextUi textUi = new TextUi();
-    	textUi.showToUser("", message, "");
+        TextUi textUi = new TextUi();
+        textUi.showToUser("", message, "");
     }
 }
