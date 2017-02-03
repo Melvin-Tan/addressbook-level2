@@ -3,6 +3,7 @@ package seedu.addressbook.storage;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
+import seedu.addressbook.ui.TextUi;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -92,12 +94,16 @@ public class StorageFile {
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
      */
     public void save(AddressBook addressBook) throws StorageOperationException {
-
+    	File file = path.toFile();
+        if (!file.exists()) {
+        	showWarningMessage("Address book is not found. Creating a new address book and transferring previously stored data...");
+        }
+        
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
          */
         try (final Writer fileWriter =
-                     new BufferedWriter(new FileWriter(path.toFile()))) {
+                     new BufferedWriter(new FileWriter(file))) {
 
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
@@ -153,4 +159,13 @@ public class StorageFile {
         return path.toString();
     }
 
+    /**
+     * Show warning message to user if needed.
+     * 
+     * @param message to be shown to user
+     */
+    private void showWarningMessage(String message) {
+		TextUi textUi = new TextUi();
+    	textUi.showToUser("", message, "");
+    }
 }
