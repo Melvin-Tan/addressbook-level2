@@ -13,6 +13,7 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+    int getSequenceNumber();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -30,7 +31,8 @@ public interface ReadOnlyPerson {
                 && other.getName().equals(this.getName()) // state checks here onwards
                 && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
-                && other.getAddress().equals(this.getAddress()));
+                && other.getAddress().equals(this.getAddress())
+                && other.getSequenceNumber() == this.getSequenceNumber());
     }
 
     /**
@@ -39,6 +41,9 @@ public interface ReadOnlyPerson {
     default String getAsTextShowAll() {
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
+        builder.append("(")
+               .append(getSequenceNumber())
+               .append(") ");
         builder.append(getName())
                 .append(" Phone: ");
         if (getPhone().isPrivate()) {
@@ -67,6 +72,9 @@ public interface ReadOnlyPerson {
      */
     default String getAsTextHidePrivate() {
         final StringBuilder builder = new StringBuilder();
+        builder.append("(")
+                .append(getSequenceNumber())
+                .append(") ");
         builder.append(getName());
         if (!getPhone().isPrivate()) {
             builder.append(" Phone: ").append(getPhone());
