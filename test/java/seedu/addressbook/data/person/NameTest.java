@@ -29,4 +29,11 @@ public class NameTest {
         Name name2 = new Name("Alice Low Mei Li");
         assertTrue(name1.isSimilar(name2));
     }
+    
+    @Test
+    public void isSimilar_similarNameWithDifferentCases_returnsTrue() throws IllegalValueException {
+        Name name1 = new Name("Patricia ALICE Stephanie");
+        Name name2 = new Name("Alice Low Mei Li");
+        assertTrue(name1.isSimilar(name2));
+    }
 }
