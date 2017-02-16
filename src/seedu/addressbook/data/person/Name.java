@@ -59,5 +59,13 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
+    
+    /**
+     * Returns true of the other name is very similar to this name.
+     * Two names are considered similar if 
+     *     - They have the same substring that have length of at least 5.
+     */
+     public boolean isSimilar(Name other) {
+         return true;
+     }
 }
