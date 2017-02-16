@@ -1,5 +1,6 @@
 package seedu.addressbook.data.person;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -13,5 +14,12 @@ public class NameTest {
         Name name1 = new Name("Alice");
         Name name2 = new Name("Alice");
         assertTrue(name1.isSimilar(name2));
+    }
+    
+    @Test
+    public void isSimilar_spelledBackwards_returnsFalse() throws IllegalValueException {
+        Name name1 = new Name("Alice");
+        Name name2 = new Name("Ecila");
+        assertFalse(name1.isSimilar(name2));
     }
 }
