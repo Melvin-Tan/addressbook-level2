@@ -63,9 +63,24 @@ public class Name {
     /**
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if 
-     *     - They have the same substring that have length of at least 5 (Note: case-insensitive).
+     *     - They share the same substring with length of at least 6 (Note: case-insensitive).
+     *     - If one of the names have length of less than 6, check whether this name is a substring of the other.
      */
      public boolean isSimilar(Name other) {
-         return fullName == other.fullName;
+         
+         // This is to determine the minimumSubstringLength for comparison.
+         int shorterLength = (fullName.length() < other.fullName.length()) ? fullName.length() : other.fullName.length();
+         final int minimumSubstringLength = (shorterLength < 6) ? shorterLength : 6;
+         
+         for (int i = 0; i < fullName.length() - minimumSubstringLength + 1; i++) {
+             String fullNameSubstring = fullName.substring(i, i + minimumSubstringLength);
+             for (int j = 0; j < other.fullName.length() - minimumSubstringLength + 1; j++) {    
+                 String otherFullNameSubstring = other.fullName.substring(j, j + minimumSubstringLength);
+                 if (fullNameSubstring.equals(otherFullNameSubstring)) {
+                     return true;
+                 }
+             }
+         }
+         return false;
      }
 }
