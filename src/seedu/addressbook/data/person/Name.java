@@ -63,9 +63,9 @@ public class Name {
     /**
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if 
-     *     - They have the same substring that have length of at least 5.
+     *     - They have the same substring that have length of at least 5 (Note: case-insensitive).
      */
      public boolean isSimilar(Name other) {
-         return true;
+         return fullName == other.fullName;
      }
 }
