@@ -36,4 +36,11 @@ public class NameTest {
         Name name2 = new Name("Alice Low Mei Li");
         assertTrue(name1.isSimilar(name2));
     }
+    
+    @Test
+    public void isSimilar_notSoSimilarName_returnsFalse() throws IllegalValueException {
+        Name name1 = new Name("Allan Low");
+        Name name2 = new Name("Alice Low Mei Li");
+        assertFalse(name1.isSimilar(name2));
+    }
 }
