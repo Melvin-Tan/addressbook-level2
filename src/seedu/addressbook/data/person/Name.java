@@ -73,9 +73,9 @@ public class Name {
          final int minimumSubstringLength = (shorterLength < 6) ? shorterLength : 6;
          
          for (int i = 0; i < fullName.length() - minimumSubstringLength + 1; i++) {
-             String fullNameSubstring = fullName.substring(i, i + minimumSubstringLength);
+             String fullNameSubstring = fullName.substring(i, i + minimumSubstringLength).toLowerCase();
              for (int j = 0; j < other.fullName.length() - minimumSubstringLength + 1; j++) {    
-                 String otherFullNameSubstring = other.fullName.substring(j, j + minimumSubstringLength);
+                 String otherFullNameSubstring = other.fullName.substring(j, j + minimumSubstringLength).toLowerCase();
                  if (fullNameSubstring.equals(otherFullNameSubstring)) {
                      return true;
                  }
